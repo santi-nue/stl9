@@ -1,0 +1,49 @@
+name: Check for new YouTube videos
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # run every day at midnight
+
+jobs:
+  check-for-new-videos:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+    - name: Install dependencies
+      run: pip install beautifulsoup4 requests
+    - name: Check for new videos
+      env:
+        CHANNEL_URL: 'https://www.youtube.com/channel/UC_x5XG1OV2P6uZZ5FSM9Ttw'
+        LAST_VIDEO_FILE: 'last_video.txt'
+      run: |
+        # Load the last video ID from file
+        if [ -f "$LAST_VIDEO_FILE" ]; then
+          LAST_VIDEO_ID=$(cat "$LAST_VIDEO_FILE")
+        else
+          LAST_VIDEO_ID=''
+        fi
+
+        # Scrape the channel page and extract the video information
+        import requests
+        from bs4 import BeautifulSoup
+
+        channel_url = os.environ['CHANNEL_URL']
+        response = requests.get(channel_url)
+        soup = BeautifulSoup(response.content, 'html.parser')
+        video_elements = soup.select('ytd-grid-video-renderer')
+        latest_video_id = video_elements[0]['video-id']
+
+        # Compare the latest video ID to the last video ID
+        if latest_video_id != LAST_VIDEO_ID:
+          # Do something with the new video, e.g. send a notification
+          print(f'New video detected: {latest_video_id}')
+
+          # Save the latest video ID to file
+          echo "$latest_video_id" > "$LAST_VIDEO_FILE"
+        else:
+          print('No new videos detected')
