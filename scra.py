@@ -6,6 +6,9 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.common.by import By
 
+import pandas as pd
+import zipfile
+
 import os
 import time
 
@@ -76,8 +79,15 @@ def getVidFromChannel(channelUrl):
         #quit driver upon error
         driver.quit()
 
-with open('channels.csv') as f:
-    channels = f.readlines()
+
+with zipfile.ZipFile('channels.zip') as zf:
+    zf.setpassword('${{ secrets.MYZIP_PASSWORD }}')
+    with zf.open('channels.csv') as f:
+        channels = f.readlines()
+
+
+# with open('channels.csv') as f:
+#    channels = f.readlines()
 
 print(f'checking {len(channels)} channels:')
 for i, channel in enumerate(channels):
