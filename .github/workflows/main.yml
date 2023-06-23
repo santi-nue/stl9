@@ -17,5 +17,7 @@ jobs:
         pip install selenium
         sudo apt-get update
         sudo apt-get install firefox
+      env:
+        MYZIP_PASSWORD: ${{ secrets.MYZIP_PASSWORD }}        
     - name: Run tests
       run: python scra.py
