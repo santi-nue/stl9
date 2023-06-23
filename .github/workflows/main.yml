@@ -14,7 +14,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install selenium pandas zipfile
+        pip install selenium
         sudo apt-get update
         sudo apt-get install firefox
     - name: Run tests
