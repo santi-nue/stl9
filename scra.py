@@ -7,7 +7,9 @@ from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.common.by import By
 
 
-import zipfile
+# import zipfile
+
+import pyminizip
 
 import os
 import time
@@ -80,7 +82,9 @@ def getVidFromChannel(channelUrl):
         driver.quit()
 
 
-# password = os.environ.get('MYZIP_PASSWORD')
+password = os.environ.get('MYZIP_PASSWORD')
+
+pyminizip.uncompress('channels.zip', '.', password)
 
 # with zipfile.ZipFile('channels.zip', 'r') as zip_file:
 #     zip_file.setpassword(bytes(password,'utf-8'))
@@ -89,6 +93,10 @@ def getVidFromChannel(channelUrl):
 
 with open('channels.csv') as f:
     channels = f.readlines()
+
+
+
+
 
 print(f'checking {len(channels)} channels:')
 for i, channel in enumerate(channels):
@@ -124,7 +132,11 @@ driver.quit()
 with open('channels.csv', 'w') as f:
     f.writelines(channels)
 
-
+# src_file = "/path/to/source/file.txt"
+# dest_file = "/path/to/destination/file.zip"
+# password = "mypassword"
+# level = 0
+# pyminizip.compress(src_file, None, dest_file, password, level)
 
 # zip_file = zipfile.ZipFile('example.zip', 'w')
 # zip_file.write('file1.txt')
