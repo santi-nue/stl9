@@ -83,7 +83,7 @@ def getVidFromChannel(channelUrl):
 password = os.environ.get('MYZIP_PASSWORD')
 
 with zipfile.ZipFile('channels.zip', 'r') as zip_file:
-    zip_file.setpassword(pwd=bytes(password,'utf-8'))
+    zip_file.setpassword(bytes(password,'utf-8'))
     with zip_file.open('channels.csv') as f:
         channels = f.readlines()
 
