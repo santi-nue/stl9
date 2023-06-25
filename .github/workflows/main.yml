@@ -19,5 +19,11 @@ jobs:
         sudo apt-get install firefox
       env:
         MYZIP_PASSWORD: ${{ secrets.MYZIP_PASSWORD }}        
+        
+    - name: Unzip files with password
+      uses: montudor/action-unzip@v1
+      with:
+        args: unzip -P ${{ secrets.MYZIP_PASSWORD }} channels.zip        
+        
     - name: Run tests
       run: python scra.py
