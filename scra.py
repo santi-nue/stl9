@@ -80,12 +80,12 @@ def getVidFromChannel(channelUrl):
         driver.quit()
 
 
-with zipfile.ZipFile('channels.zip') as zf:
-    password = os.environ.get('MYZIP_PASSWORD')
-    zf.setpassword(password.encode('utf-8'))
-    with zf.open('channels.csv') as f:
-        channels = f.readlines()
+password = os.environ.get('MYZIP_PASSWORD')
 
+with zipfile.ZipFile('channels.zip', 'r') as zip_file:
+    zip_file.setpassword(password.encode('utf-8'))
+    with zip_file.open('channels.csv') as f:
+        channels = f.readlines()
 
 # with open('channels.csv') as f:
 #    channels = f.readlines()
