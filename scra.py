@@ -81,8 +81,8 @@ def getVidFromChannel(channelUrl):
 
 
 with zipfile.ZipFile('channels.zip') as zf:
-    zip_password = os.environ['MYZIP_PASSWORD'].encode('utf-8')
-    zf.setpassword(zip_password)
+    password = os.environ.get('MYZIP_PASSWORD')
+    zf.setpassword(password.encode('utf-8'))
     with zf.open('channels.csv') as f:
         channels = f.readlines()
 
