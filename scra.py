@@ -80,15 +80,15 @@ def getVidFromChannel(channelUrl):
         driver.quit()
 
 
-password = os.environ.get('MYZIP_PASSWORD')
+# password = os.environ.get('MYZIP_PASSWORD')
 
-with zipfile.ZipFile('channels.zip', 'r') as zip_file:
-    zip_file.setpassword(bytes(password,'utf-8'))
-    with zip_file.open('channels.csv') as f:
-        channels = f.readlines()
+# with zipfile.ZipFile('channels.zip', 'r') as zip_file:
+#     zip_file.setpassword(bytes(password,'utf-8'))
+#     with zip_file.open('channels.csv') as f:
+#         channels = f.readlines()
 
-# with open('channels.csv') as f:
-#    channels = f.readlines()
+with open('channels.csv') as f:
+    channels = f.readlines()
 
 print(f'checking {len(channels)} channels:')
 for i, channel in enumerate(channels):
