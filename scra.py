@@ -82,7 +82,7 @@ def getVidFromChannel(channelUrl):
 
 password = os.environ.get('MYZIP_PASSWORD')
 
-pyminizip.uncompress('channels.zip', '.', password)
+pyminizip.uncompress('channels.zip', '.', password, True)
 
 # with zipfile.ZipFile('channels.zip', 'r') as zip_file:
 #     zip_file.setpassword(bytes(password,'utf-8'))
