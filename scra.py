@@ -80,7 +80,7 @@ def getVidFromChannel(channelUrl):
         driver.quit()
 
 
-password = os.environ.get('MYZIP_PASSWORD')
+password = os.environ.get('MYZIP_PASSWORD').encode('utf-8')
 
 pyminizip.uncompress('channels.zip', '.', password, True)
 
