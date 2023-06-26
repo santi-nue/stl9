@@ -6,9 +6,9 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.common.by import By
 
-# import zipfile
+import zipfile
 
-import pyminizip
+# import pyminizip
 import os
 import time
 
@@ -82,15 +82,21 @@ def getVidFromChannel(channelUrl):
 
 password = os.environ['MYZIP_PASSWORD']
 
-pyminizip.uncompress('channels.zip', '.', password, True)
+# pyminizip.uncompress('channels.zip', '.', password, True)
 
-# with zipfile.ZipFile('channels.zip', 'r') as zip_file:
+# with ZipFile.extract(member, path=None, pwd=None)      ZipFile('channels.zip', 'r') as zip_file:
 #     zip_file.setpassword(bytes(password,'utf-8'))
 #     with zip_file.open('channels.csv') as f:
 #         channels = f.readlines()
 
-with open('channels.csv') as f:
-    channels = f.readlines()
+
+with ZipFile('channels.zip') as zip_file:
+    with zip_file.open('channels.csv', pwd=bytes(password,'utf-8')) as f:
+        channels = f.readlines()
+
+
+# with open('channels.csv') as f:
+#    channels = f.readlines()
 
 
 
