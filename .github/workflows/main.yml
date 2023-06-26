@@ -17,10 +17,8 @@ jobs:
         pip install selenium pyminizip
         sudo apt-get update
         sudo apt-get install firefox
-      env:
-        MYZIP_PASSWORD: ${{ secrets.MYZIP_PASSWORD }}        
-        
-
-        
     - name: Run tests
-      run: python scra.py
+      env:
+        MYZIP_PASSWORD: ${{ secrets.MYZIP_PASSWORD }} 
+      run: |
+        python scra.py
