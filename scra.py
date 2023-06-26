@@ -90,7 +90,7 @@ password = os.environ['MYZIP_PASSWORD']
 #         channels = f.readlines()
 
 
-with ZipFile('channels.zip') as zip_file:
+with zipfile.ZipFile('channels.zip') as zip_file:
     with zip_file.open('channels.csv', pwd=bytes(password,'utf-8')) as f:
         channels = f.readlines()
 
