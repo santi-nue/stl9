@@ -98,7 +98,7 @@ def getVidFromChannel(channelUrl):
 
 with zipfile.ZipFile('channels.zip') as zip_file:
     password = os.environ['MYZIP_PASSWORD'].encode('utf-8')
-    zip_file.extractall(pwd=password)
+    zip_file.extractall(path=os.environ['GITHUB_WORKSPACE'], pwd=password)
 
 with open('channels.csv') as f:
     channels = f.readlines()
