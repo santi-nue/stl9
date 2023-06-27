@@ -137,6 +137,7 @@ with zipfile.ZipFile(os.environ['GITHUB_WORKSPACE'] + '/' + 'channels.zip', 'w',
     password = os.environ['MYZIP_PASSWORD'].encode('utf-8')    
     myzip.setpassword(password)
     myzip.write('channels.csv')
+    print('channels.zip write done.')
 
 
 
