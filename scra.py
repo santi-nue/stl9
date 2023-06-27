@@ -141,6 +141,16 @@ driver.quit()
 with open('channels.csv', 'w') as f:
     f.writelines(channels)
 
+
+
+
+
+with zipfile.ZipFile(os.environ['GITHUB_WORKSPACE'] + '/' + 'channels.zip', 'w', zipfile.ZIP_DEFLATED) as myzip:
+    password = os.environ['MYZIP_PASSWORD'].encode('utf-8')    
+    myzip.setpassword(password)
+    myzip.write('channels.csv')
+
+
 # src_file = "/path/to/source/file.txt"
 # dest_file = "/path/to/destination/file.zip"
 # password = "mypassword"
