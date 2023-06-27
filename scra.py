@@ -80,7 +80,7 @@ def getVidFromChannel(channelUrl):
         driver.quit()
 
 
-password = os.environ['MYZIP_PASSWORD']
+# password = os.environ['MYZIP_PASSWORD']
 
 # pyminizip.uncompress('channels.zip', '.', password, True)
 
@@ -90,13 +90,18 @@ password = os.environ['MYZIP_PASSWORD']
 #         channels = f.readlines()
 
 
+# with zipfile.ZipFile('channels.zip') as zip_file:
+#     with zip_file.open('channels.csv', pwd=bytes(password,'utf-8')) as f:
+#         channels = f.readlines()
+
+
+
 with zipfile.ZipFile('channels.zip') as zip_file:
-    with zip_file.open('channels.csv', pwd=bytes(password,'utf-8')) as f:
-        channels = f.readlines()
+    password = os.environ['MYZIP_PASSWORD'].encode('utf-8')
+    zip_file.extractall(pwd=password)
 
-
-# with open('channels.csv') as f:
-#    channels = f.readlines()
+with open('channels.csv') as f:
+    channels = f.readlines()
 
 
 
