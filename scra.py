@@ -80,19 +80,7 @@ def getVidFromChannel(channelUrl):
         driver.quit()
 
 
-# password = os.environ['MYZIP_PASSWORD']
 
-# pyminizip.uncompress('channels.zip', '.', password, True)
-
-# with ZipFile.extract(member, path=None, pwd=None)      ZipFile('channels.zip', 'r') as zip_file:
-#     zip_file.setpassword(bytes(password,'utf-8'))
-#     with zip_file.open('channels.csv') as f:
-#         channels = f.readlines()
-
-
-# with zipfile.ZipFile('channels.zip') as zip_file:
-#     with zip_file.open('channels.csv', pwd=bytes(password,'utf-8')) as f:
-#         channels = f.readlines()
 
 
 
@@ -151,14 +139,4 @@ with zipfile.ZipFile(os.environ['GITHUB_WORKSPACE'] + '/' + 'channels.zip', 'w',
     myzip.write('channels.csv')
 
 
-# src_file = "/path/to/source/file.txt"
-# dest_file = "/path/to/destination/file.zip"
-# password = "mypassword"
-# level = 0
-# pyminizip.compress(src_file, None, dest_file, password, level)
 
-# zip_file = zipfile.ZipFile('example.zip', 'w')
-# zip_file.write('file1.txt')
-# zip_file.write('file2.txt')
-# zip_file.setpassword(b'my_password')
-# zip_file.close()
