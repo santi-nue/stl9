@@ -132,13 +132,14 @@ with open('channels.csv', 'w') as f:
 
 
 with zipfile.ZipFile(os.environ['GITHUB_WORKSPACE'] + '/' + 'channels.zip', 'w', compress_type=zipfile.ZIP_DEFLATED) as myzip:
-    password = os.environ['MYZIP_PASSWORD'].encode('utf-8')    
-    myzip.setpassword(password)
-    myzip.write('channels.csv')
+    try:
+        password = os.environ['MYZIP_PASSWORD'].encode('utf-8')    
+        myzip.setpassword(password)
+        myzip.write('channels.csv')
     except FileNotFoundError as e:
-    print(f' *** Exception occurred during zip process - {e}')
+        print(f' *** Exception occurred during zip process - {e}')
     finally:
-    myzip.close()
+       myzip.close()
     print('channels.zip write done.')
 
 
