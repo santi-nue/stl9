@@ -131,7 +131,7 @@ with open('channels.csv', 'w') as f:
 
 
 
-with zipfile.ZipFile(os.environ['GITHUB_WORKSPACE'] + '/' + 'channels.zip', 'w', compress_type=zipfile.ZIP_DEFLATED) as myzip:
+with zipfile.ZipFile(os.environ['GITHUB_WORKSPACE'] + '/' + 'channels.zip', 'w', compression=zipfile.ZIP_DEFLATED) as myzip:
     try:
         password = os.environ['MYZIP_PASSWORD'].encode('utf-8')    
         myzip.setpassword(password)
